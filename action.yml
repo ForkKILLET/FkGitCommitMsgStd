@@ -10,17 +10,5 @@ inputs:
 
 runs:
   using: node12
-  steps:
-    - run: |
-        yarn add -D fk-git-commit-msg-std
-      shell: bash
-    - run: |
-        node << 'CODE'
-        const { S, I } = require("fk-git-commit-msg-std/check.js")
-        const A = require(".gitmsgrc.js")
-        const M = JSON.parse(process.env.INPUT_MSGS)
-        const F = I(M, A)
-        process.exit(F)
-        CODE
-      shell: bash
+  main: check.js
 

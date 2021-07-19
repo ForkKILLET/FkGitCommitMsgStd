@@ -5,5 +5,9 @@
   "main": "check.js",
   "repository": "https://github.com/ForkFG/FkGitCommitInfoStd.git",
   "author": "ForkΨKILLET <fork_killet@qq.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0"
+  }
 }
