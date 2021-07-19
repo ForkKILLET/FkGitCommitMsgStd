@@ -4,8 +4,8 @@ name: fk-git-commit-msg-std
 description: 'Check if git commit messages meet ForkKILLET standard.'
 author: ForkKILLET
 inputs:
-  commit_id:
-    description: 'Which commit(s) to check.'
+  msgs:
+    description: 'Commit messages(s) to check.'
     require: true
 
 on: [ push, pull_request ]
@@ -25,7 +25,8 @@ jobs:
         run: |
           node << 'CODE'
           const { S, I } = require("fk-git-commit-msg-std/check.js")
-          const M = process.env.INPUT_COMMIT_ID
+          const A = require(".gitmsgrc.js")
+          const M = JSON.parse(process.env.INPUT_MSGS)
           const F = I(M, A)
           process.exit(F)
           CODE
