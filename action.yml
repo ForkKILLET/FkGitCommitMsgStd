@@ -3,22 +3,22 @@
 on: [push, pull_request]
 jobs:
   check:
-    name: Check Commit Info
+    name: Check Commit Msg
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16.x
-      - name: check
+      - name: install fk-git-commit-msg-std
+        run: |
+          yarn add -D fk-git-commit-msg-std
+      - name: run check
         run: |
           node << 'CODE'
-          const { S, I } = require("./check.js")
+          const { S, I } = require("fk-git-commit-msg-std/check.js")
           const M = ${{ toJson(github.event.commits.*.message) }}
-          const F = I(M, {
-            debug: false,
-            // TODO: more configuration here
-          })
+          const F = I(M, A)
           process.exit(F)
           CODE
 

@@ -177,7 +177,9 @@ const C = {
 }
 
 const I = (msgs, args) => {
-	Object.assign(S, args)
+	for (const [ k, v ] of Object.entries(args))
+		S[k] = typeof v == "function" ? v(S[k]) : v
+
 	if (S.debug) L("🔎 Debugging is on")
 
 	let fail = 0
