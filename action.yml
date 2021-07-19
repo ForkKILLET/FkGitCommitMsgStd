@@ -10,5 +10,5 @@ inputs:
 
 runs:
   using: node12
-  main: check.js
+  main: check.dist.js
 
