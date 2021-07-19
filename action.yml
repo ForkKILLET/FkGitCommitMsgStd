@@ -8,26 +8,23 @@ inputs:
     description: 'Commit messages(s) to check.'
     require: true
 
-on: [ push, pull_request ]
-jobs:
-  check:
-    name: Check new commit msg
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-      - name: install fk-git-commit-msg-std
-        run: |
-          yarn add -D fk-git-commit-msg-std
-      - name: run check
-        run: |
-          node << 'CODE'
-          const { S, I } = require("fk-git-commit-msg-std/check.js")
-          const A = require(".gitmsgrc.js")
-          const M = JSON.parse(process.env.INPUT_MSGS)
-          const F = I(M, A)
-          process.exit(F)
-          CODE
+runs:
+  using: node16
+  steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16.x
+    - name: install fk-git-commit-msg-std
+      run: |
+        yarn add -D fk-git-commit-msg-std
+    - name: run check
+      run: |
+        node << 'CODE'
+        const { S, I } = require("fk-git-commit-msg-std/check.js")
+        const A = require(".gitmsgrc.js")
+        const M = JSON.parse(process.env.INPUT_MSGS)
+        const F = I(M, A)
+        process.exit(F)
+        CODE
 
