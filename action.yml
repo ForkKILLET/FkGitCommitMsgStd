@@ -9,7 +9,7 @@ inputs:
     require: true
 
 runs:
-  using: node16
+  using: node12
   steps:
     - run: |
         yarn add -D fk-git-commit-msg-std
