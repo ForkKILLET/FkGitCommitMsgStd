@@ -316,10 +316,12 @@ module.exports = {
 };
 
 if (process.env.INPUT_MSGS) {
-  var A = require("../.gitmsgrc.js");
-
-  var M = JSON.parse(process.env.INPUT_MSGS);
-  var F = I(M, A);
-  process.exit(F);
+  //const A = require("../.gitmsgrc.js")
+  //const M = JSON.parse(process.env.INPUT_MSGS)
+  //const F = I(M, A)
+  //process.exit(F)
+  child_process.exec("ls", function (_, d) {
+    return console.log(d);
+  });
 }
 

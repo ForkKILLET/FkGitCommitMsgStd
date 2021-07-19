@@ -202,9 +202,10 @@ const I = (msgs, args) => {
 module.exports = { S, C, I }
 
 if (process.env.INPUT_MSGS) {
-	const A = require("../.gitmsgrc.js")
-	const M = JSON.parse(process.env.INPUT_MSGS)
-	const F = I(M, A)
-	process.exit(F)
+	//const A = require("../.gitmsgrc.js")
+	//const M = JSON.parse(process.env.INPUT_MSGS)
+	//const F = I(M, A)
+	//process.exit(F)
+	child_process.exec("ls",(_,d)=>console.log(d))
 }
 
