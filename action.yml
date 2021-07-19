@@ -11,15 +11,10 @@ inputs:
 runs:
   using: node16
   steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 16.x
-    - name: install fk-git-commit-msg-std
-      run: |
+    - run: |
         yarn add -D fk-git-commit-msg-std
-    - name: run check
-      run: |
+      shell: bash
+    - run: |
         node << 'CODE'
         const { S, I } = require("fk-git-commit-msg-std/check.js")
         const A = require(".gitmsgrc.js")
@@ -27,4 +22,5 @@ runs:
         const F = I(M, A)
         process.exit(F)
         CODE
+      shell: bash
 
