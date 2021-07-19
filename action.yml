@@ -1,0 +1,24 @@
+---
+
+on: [push, pull_request]
+jobs:
+  check:
+    name: Check Commit Info
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+      - name: check
+        run: |
+          node << 'CODE'
+          const { S, I } = require("./check.js")
+          const M = ${{ toJson(github.event.commits.*.message) }}
+          const F = I(M, {
+            debug: false,
+            // TODO: more configuration here
+          })
+          process.exit(F)
+          CODE
+
