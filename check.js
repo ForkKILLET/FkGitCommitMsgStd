@@ -1,4 +1,5 @@
 const { format } = require("util")
+const A = require("minimist")(process.argv.slice(2))
 
 const L = (...P) => console.log(...P)
 L.o = (...P) => process.stdout.write(format(...P))
@@ -185,7 +186,9 @@ const I = (msgs, args) => {
 	let fail = 0
 	msgs.forEach((msg, i) => {
 		S.msg = msg
-		S.lns = msg.split("\n")
+		S.lnb = [ "\r\n", "\r", "\n" ].find(c => msg.includes(c))
+		S.lns = msg.split(S.lnb)
+
 		try {
 			S.T({ n: "root", d: "whole message" })
 		}
@@ -200,4 +203,10 @@ const I = (msgs, args) => {
 }
 
 module.exports = { S, C, I }
+
+if (A.e) {
+	const M = JSON.parse(process.env[A.e])
+	const R = require(A.c)
+	process.exit(I(M, R))
+}
 

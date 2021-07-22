@@ -1,9 +1,12 @@
 {
   "name": "fk-git-commit-msg-std",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Check if git commit messages meet ForkKILLET standard.",
   "main": "check.js",
   "repository": "https://github.com/ForkFG/FkGitCommitInfoStd.git",
   "author": "ForkΨKILLET <fork_killet@qq.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
 }
