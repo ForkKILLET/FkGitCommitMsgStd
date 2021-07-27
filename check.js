@@ -185,15 +185,14 @@ const I = (msgs, args) => {
 
 	let fail = 0
 	msgs.forEach((msg, i) => {
-		S.msg = msg
-		S.lnb = [ "\r\n", "\r", "\n" ].find(c => msg.includes(c))
-		S.lns = msg.split(S.lnb)
+		S.msg = msg.replaceAll("\r\n", "\n").replaceAll("\r", "\n")
+		S.lns = S.msg.split("\n")
 
 		try {
 			S.T({ n: "root", d: "whole message" })
 		}
 		catch (e) {
-			L((S.debug ? "\n" : "") + `💥 Error at meesage ${i}#, ${S._.n} (${S._.d}): ${e}!`)
+			L((S.debug ? "\n" : "") + `💥 Error at message ${i}#, ${S._.n} (${S._.d}): ${e}!`)
 			fail ++
 		}
 	})
